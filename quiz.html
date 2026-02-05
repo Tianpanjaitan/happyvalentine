@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Quiz - Happy Valentine's Day</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS External -->
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <!-- Floating hearts -->
+    <div class="heart" style="bottom:-20px;"></div>
+    <div class="heart" style="bottom:-50px;"></div>
+    <div class="heart" style="bottom:-80px;"></div>
+    <div class="heart" style="bottom:-30px;"></div>
+    <div class="heart" style="bottom:-60px;"></div>
+
+    <div class="container">
+        <h1>Valentine's Quiz 💖</h1>
+        <p class="intro">jawab semua quiz di bawah setelah itu baru lanjut ke halaman selanjutnya yaaaa. 😘</p>
+        
+        <div id="feedback" class="hidden"> <!-- Pesan feedback di sini -->
+            <p id="feedback-text"></p>
+        </div>
+        
+        <div id="quiz-container">
+            <div class="question" id="q1">
+                <h3>1. Aku ganteng ga?</h3>
+                <button class="option" data-correct="true">A. Ganteng</button>
+                <button class="option" data-correct="false">B. Engga</button>
+            </div>
+            <div class="question hidden" id="q2">
+                <h3>2. Kamu cantik ga?</h3>
+                <button class="option" data-correct="true">A. Cantik banget</button>
+                <button class="option" data-correct="false">B. harus jawab a</button>
+            </div>
+            <div class="question hidden" id="q3">
+                <h3>3. Kamu sayang aku ga?</h3>
+                <button class="option" data-correct="true">A. Sayang banget</button>
+                <button class="option" data-correct="false">B. Engga</button>
+            </div>
+            <div class="question hidden" id="q4">
+                <h3>4. Kalau ada cowo yang lebih ganteng dari aku dekatin kamu, respon kamu harus apa?</h3>
+                <button class="option" data-correct="true">A. Jauhin</button>
+                <button class="option" data-correct="false">B. Jauhin juga</button>
+            </div>
+        </div>
+        
+        <div id="result" class="hidden">
+            <h2>Hasil Quiz!</h2>
+            <p id="score">Skor kamu: <span id="score-value">0</span>/4</p>
+            <p id="message">Pesan spesial: Kamu adalah yang terbaik di dunia aku! Terima kasih sudah selalu membuatku bahagia. 💕 Aku sayang kamu selamanya!</p>
+        </div>
+        <a href="final.html" class="btn">See the Final Surprise 💕</a>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        let score = 0;
+        const totalQuestions = 4;
+
+        document.querySelectorAll('.option').forEach(button => {
+            button.addEventListener('click', function() {
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const feedback = document.getElementById('feedback');
+                const feedbackText = document.getElementById('feedback-text');
+                
+                if (isCorrect) {
+                    score++;
+                    feedbackText.textContent = 'Benar! kamu cantik! 😍';
+                    feedback.className = 'feedback correct'; // Hijau untuk benar
+                } else {
+                    feedbackText.textContent = 'Salah? Tidak masalah, kamu tetap cantik! 💖';
+                    feedback.className = 'feedback wrong'; // Merah, tapi pesan positif
+                }
+                
+                feedback.classList.remove('hidden'); // Tampilkan feedback
+                
+                // Tunggu 2 detik lalu lanjut
+                setTimeout(() => {
+                    feedback.classList.add('hidden');
+                    // Hide current question and show next
+                    document.getElementById('q' + currentQuestion).classList.add('hidden');
+                    currentQuestion++;
+                    if (currentQuestion <= totalQuestions) {
+                        document.getElementById('q' + currentQuestion).classList.remove('hidden');
+                    } else {
+                        // Show result
+                        document.getElementById('score-value').textContent = score;
+                        document.getElementById('result').classList.remove('hidden');
+                    }
+                }, 2000); // Delay 2 detik
+            });
+        });
+    </script>
+</body>
+</html>

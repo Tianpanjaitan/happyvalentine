@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd6e8, #ffb6c1);
+  /* Hapus overflow: hidden agar halaman bisa di-scroll jika ada konten lebih */
+  /* overflow: hidden; */
+}
+
+.card {
+  width: 320px;
+  padding: 40px 25px;
+  text-align: center;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative; /* Tambahkan ini agar hati absolut terhadap kartu */
+}
+
+h1 {
+  color: #ff4d6d;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #6b2d3a;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 20px;
+  background: #ff4d6d;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+}
+
+.btn:hover {
+  background: #e63e5c;
+  transform: translateY(-2px);
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff4d6d;
+  transform: rotate(45deg);
+  animation: float 6s infinite ease-in;
+  opacity: 0.5;
+  top: 100%; /* Tambahkan ini agar hati mulai dari bawah kartu */
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(45deg); opacity: 0.6; }
+  100% { transform: translateY(-600px) rotate(45deg); opacity: 0; }
+}
+
+/* posisi random */
+.heart:nth-child(1) { left: 10%; animation-duration: 5s; }
+.heart:nth-child(2) { left: 30%; animation-duration: 7s; }
+.heart:nth-child(3) { left: 50%; animation-duration: 6s; }
+.heart:nth-child(4) { left: 70%; animation-duration: 8s; }
+.heart:nth-child(5) { left: 90%; animation-duration: 5.5s; }
